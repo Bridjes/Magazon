@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+    margin: 0;
+}
+header {
+    display: grid;
+    grid-template: 60px / 100px 4.5fr 1fr 0.5fr 1fr;
+    background: gray;
+}
+header .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+header .logo a {
+    color: white;
+    font-family: "Roboto-", sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+}
+header .logo a:hover {
+    color: greenyellow;
+}
+header nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+header nav a {
+    margin: 20px;
+    color: white;
+    font-family: Roboto, sans-serif;
+}
+header nav a:hover {
+    margin: 20px;
+    color: greenyellow;
+}
+header form{
+    display: flex;
+    align-items: center;
+}
+header input {
+    outline: none;
+    height: 35px;
+    border: none;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    font-family: "Roboto", sans-serif;
+    font-size: 15px;
+    text-indent: 10px;
+}
+header form button {
+    height: 35px;
+    width: 35px;
+    background: white;
+    border: none;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+header form i {
+    color: black;
+}
+header form i:hover {
+    color: greenyellow;
+}
+header .cart a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 25px;
+    height: 100%;
+    text-decoration: none;
+}
+header .cart i {
+    position: relative;
+}
+header .cart i:hover {
+    color: greenyellow;
+}
+header .cart .badge {
+    position: absolute;
+    right: -5px;
+    top: 0;
+    background: blue;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+header .cart .badge p {
+    font-size: 10px;
+    font-family: Roboto, sans-serif;
+}
+header .auth {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+header .auth a {
+    font-family: Roboto, sans-serif;
+    color: white;
+    text-decoration: none;
+}
+header .auth a:hover {
+    color: greenyellow;
+}
