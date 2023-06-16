@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename = 'font-awesome/css/font-awesome.min.css') }}">
 </head>
@@ -15,9 +15,9 @@
             <a href="#">Magazon</a>
         </div>
         <nav>
-            <a>Каталог</a>
-            <a>Поддержка</a>
-            <a>FAQ</a>
+            <a href="#">Каталог</a>
+            <a href="#">Поддержка</a>
+            <a href="#">FAQ</a>
         </nav>
         <form>
             <input type="search" placeholder="поиск..." name="search">
@@ -33,6 +33,21 @@
                     </div>
                 </i>
             </a>
+            <div class="dropdown-flags">
+                <button class="dropdown-flags-button">
+                    <img class="flag" src="{{ url_for('static', filename='img/ru.png') }}">
+                </button>
+                <div class="dropdown-flags-content">
+                    <a href="#">
+                        <img class="flags" src="{{ url_for('static', filename='img/ru.png') }}">
+                        <p>русский</p>
+                    </a>
+                    <a href="#">
+                        <img class="flags" src="{{ url_for('static', filename='img/us.png') }}">
+                        <p>english</p>
+                    </a>
+                </div>
+            </div>
         </div>
         <div class="auth">
             <a href="#">Войти</a>
@@ -42,6 +57,8 @@
     {% block content %}
     {% endblock %}
 
-    <p>Низ</p>
+    <footer>
+
+    </footer>
 </body>
 </html>

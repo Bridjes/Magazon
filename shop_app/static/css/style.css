@@ -2,11 +2,12 @@
 
 body {
     margin: 0;
+    background: #dcdcdc;
 }
 header {
     display: grid;
     grid-template: 60px / 100px 4.5fr 1fr 0.5fr 1fr;
-    background: gray;
+    background: #1c222a;
 }
 header .logo {
     display: flex;
@@ -14,14 +15,15 @@ header .logo {
     align-items: center;
 }
 header .logo a {
-    color: white;
-    font-family: "Roboto-", sans-serif;
+    color: #dcdcdc;
+    font-family: Roboto, sans-serif;
     font-size: 20px;
     font-weight: bold;
     text-decoration: none;
 }
 header .logo a:hover {
-    color: greenyellow;
+    color: #dcdcdc;
+    text-shadow: 0 0 10px #edb021;
 }
 header nav {
     display: flex;
@@ -30,12 +32,14 @@ header nav {
 }
 header nav a {
     margin: 20px;
-    color: white;
+    color: #edb021;
     font-family: Roboto, sans-serif;
+    text-decoration: none;
 }
 header nav a:hover {
     margin: 20px;
-    color: greenyellow;
+    color: #dcdcdc;
+    text-shadow: 0 0 10px #dcdcdc;
 }
 header form{
     display: flex;
@@ -47,14 +51,15 @@ header input {
     border: none;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
-    font-family: "Roboto", sans-serif;
+    font-family: Roboto, sans-serif;
     font-size: 15px;
     text-indent: 10px;
+    background: #dcdcdc;
 }
 header form button {
     height: 35px;
     width: 35px;
-    background: white;
+    background: #dcdcdc;
     border: none;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -64,16 +69,21 @@ header form button {
     align-items: center;
 }
 header form i {
-    color: black;
+    color: #1c222a;
 }
 header form i:hover {
-    color: greenyellow;
+    color: darkgray;
+}
+header .cart {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 header .cart a {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: #edb021;
     font-size: 25px;
     height: 100%;
     text-decoration: none;
@@ -82,13 +92,17 @@ header .cart i {
     position: relative;
 }
 header .cart i:hover {
-    color: greenyellow;
+    color: #dcdcdc;
+    text-shadow: 0 0 10px #dcdcdc;
 }
 header .cart .badge {
     position: absolute;
     right: -5px;
     top: 0;
-    background: blue;
+    border: 1px solid #edb021;
+    box-shadow: -2px 1px 2px #1c222a;
+    box-sizing: border-box;
+    background: #1c222a;
     border-radius: 50%;
     width: 15px;
     height: 15px;
@@ -100,6 +114,50 @@ header .cart .badge p {
     font-size: 10px;
     font-family: Roboto, sans-serif;
 }
+header .cart .flag {
+    width: 20px;
+    height: 12px;
+}
+header .cart .dropdown-flags {
+    display: block;
+    align-items: center;
+    position: relative;
+}
+header .cart .dropdown-flags-button {
+    padding: 0;
+    border: none;
+    height: 12px;
+}
+header .cart .dropdown-flags-content {
+    display: none;
+    position: absolute;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 5px;
+}
+header .cart .dropdown-flags-content a {
+    margin: 5px 5px;
+}
+header .cart .dropdown-flags-content p {
+    font-family: Roboto, sans-serif;
+    font-size: 15px;
+    color: #dcdcdc;
+    margin: 0 0 0 5px;
+}
+header .cart .dropdown-flags:hover .dropdown-flags-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+header .cart .dropdown-flags-content .flags {
+    width: 20px;
+}
+header .cart .flag:hover {
+    box-shadow: 0 0 10px 2px #dcdcdc;
+}
 header .auth {
     display: flex;
     justify-content: center;
@@ -107,9 +165,14 @@ header .auth {
 }
 header .auth a {
     font-family: Roboto, sans-serif;
-    color: white;
+    color: #edb021;
     text-decoration: none;
+    border: 1px solid #edb021;
+    border-radius: 10px;
+    padding: 7px;
 }
 header .auth a:hover {
-    color: greenyellow;
+    color: #1c222a;
+    background: #edb021;
+    box-shadow: 0 0 10px #edb021;
 }
