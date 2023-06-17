@@ -8,4 +8,4 @@ class Item(db.Model):
     price = db.Column(db.Float, nullable=False)
 
     def __repr__(self):
-        return f'<Model {self.id}>'
+        return f'{self.name} {self.id}'
