@@ -1,0 +1,30 @@
+{% extends "menu.html" %}
+
+{% block title%}Добавление товара{% endblock %}
+{% block link%}<link rel="stylesheet" href="{{ url_for('static', filename = 'css/admin_item_add.css') }}">{% endblock %}
+
+{% block content %}
+    <section>
+        <form>
+            <h3>Добавить товар</h3>
+            <div class="form">
+                <label for="name">Наименование</label>
+                <input id="name" name="name" type="text">
+                <label for="category">Категория</label>
+                <select id="category" name="category">
+                    <option value="option1">Категория 1</option>
+                    <option value="option2">Категория 2</option>
+                    <option value="option3">Категория 3</option>
+                    <option value="option3">Категория 4</option>
+                </select>
+                <label for="description">Описание</label>
+                <textarea id="description" name="description"></textarea>
+                <label for="photo">Изображение</label>
+                <input id="photo" name="photo" type="file" multiple accept="image/jpeg,image/png">
+                <label for="price">Стоимость</label>
+                <input id="price" name="price" type="text">
+                <button type="submit">Сохранить</button>
+            </div>
+        </form>
+    </section>
+{% endblock %}

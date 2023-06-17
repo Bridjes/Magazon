@@ -1,0 +1,61 @@
+section {
+    display: flex;
+    justify-content: flex-start;
+    padding: 20px;
+}
+section form {
+    display: flex;
+    flex-direction: column;
+}
+section form h3 {
+    margin: 0 0 20px 0;
+    font-family: Roboto, sans-serif;
+}
+section form .form {
+    display: grid;
+    grid-gap: 20px;
+    grid-template: 1fr 1fr 4fr 1fr 1fr 1fr 1fr/ 1fr 4fr;
+}
+section form label {
+    font-family: Roboto, sans-serif;
+}
+section form input {
+    background: white;
+    border-radius: 5px;
+    height: 20px;
+    border: 1px solid #1c222a;
+    text-indent: 5px;
+    outline: none;
+    font-family: Roboto, sans-serif;
+}
+section form textarea {
+    border-radius: 5px;
+    height: 100px;
+    text-indent: 5px;
+    font-family: Roboto, sans-serif;
+}
+section form input::-webkit-file-upload-button {
+    background: #1c222a;
+    color: #dcdcdc;
+    height: 20px;
+    position: relative;
+    left: -5px;
+    border: none;
+    font-family: Roboto, sans-serif;
+}
+section form input::-webkit-file-upload-button:hover {
+    background: #6a655d;
+}
+section form select {
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #1c222a;
+    font-family: Roboto, sans-serif;
+}
+section form button {
+    background: #1c222a;
+    font-family: Roboto, sans-serif;
+    border: none;
+    border-radius: 5px;
+    color: #dcdcdc;
+}
