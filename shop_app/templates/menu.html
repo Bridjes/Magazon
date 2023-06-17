@@ -6,7 +6,8 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/menu.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/index.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename = 'font-awesome/css/font-awesome.min.css') }}">
 </head>
 <body>
@@ -15,9 +16,19 @@
             <a href="#">Magazon</a>
         </div>
         <nav>
-            <a href="#">Каталог</a>
-            <a href="#">Поддержка</a>
-            <a href="#">FAQ</a>
+            <div class="dropdown-menu">
+                <div class="dropdown-menu-button">
+                    <i class="fa fa-bars"></i>
+                </div>
+                <div class="dropdown-menu-content">
+                    <a class="dropdown-menu-points" href="#">Каталог</a>
+                    <a class="dropdown-menu-points" href="#">Поддержка</a>
+                    <a class="dropdown-menu-points" href="#">FAQ</a>
+                </div>
+            </div>
+            <a class="menu-points" href="#">Каталог</a>
+            <a class="menu-points" href="#">Поддержка</a>
+            <a class="menu-points" href="#">FAQ</a>
         </nav>
         <form>
             <input type="search" placeholder="поиск..." name="search">
@@ -58,7 +69,33 @@
     {% endblock %}
 
     <footer>
-
+        <div class="footer-column">
+            <p>Покупателям</p>
+            <a href="#">Способы оплаты</a>
+            <a href="#">Возврат товара</a>
+            <a href="#">Доставка</a>
+            <a href="#">Возврат денежных стредств</a>
+            <a href="#">Политика обработки персональных данных</a>
+        </div>
+        <div class="footer-column">
+            <p>Компания</p>
+            <a href="#">О нас</a>
+            <a href="#">Контакты</a>
+            <a href="#">Вакансии</a>
+        </div>
+        <div class="footer-column">
+            <p>Мы в соцсетях</p>
+            <a href="#">Instagram</a>
+            <a href="#">Telegram</a>
+            <a href="#">Вконтакте</a>
+        </div>
+        <div class="footer-row">
+            <p class="footer-info">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Aliquam aspernatur autem debitis dignissimos distinctio esse magni maiores nemo repudiandae vitae?
+            </p>
+            <p class="footer-date">by Bridges 2023</p>
+        </div>
     </footer>
 </body>
 </html>

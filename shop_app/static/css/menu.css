@@ -30,13 +30,16 @@ header nav {
     align-items: center;
     justify-content: flex-start;
 }
-header nav a {
+header nav .dropdown-menu {
+    display: none;
+}
+header nav .menu-points {
     margin: 20px;
     color: #edb021;
     font-family: Roboto, sans-serif;
     text-decoration: none;
 }
-header nav a:hover {
+header nav .menu-points:hover {
     margin: 20px;
     color: #dcdcdc;
     text-shadow: 0 0 10px #dcdcdc;
@@ -49,8 +52,8 @@ header input {
     outline: none;
     height: 35px;
     border: none;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
     font-family: Roboto, sans-serif;
     font-size: 15px;
     text-indent: 10px;
@@ -61,8 +64,8 @@ header form button {
     width: 35px;
     background: #dcdcdc;
     border: none;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
     font-size: 15px;
     display: flex;
     justify-content: center;
@@ -87,6 +90,7 @@ header .cart a {
     font-size: 25px;
     height: 100%;
     text-decoration: none;
+    margin: 0 10px 0 20px;
 }
 header .cart i {
     position: relative;
@@ -122,6 +126,7 @@ header .cart .dropdown-flags {
     display: block;
     align-items: center;
     position: relative;
+    margin: 0 10px;
 }
 header .cart .dropdown-flags-button {
     padding: 0;
@@ -132,7 +137,7 @@ header .cart .dropdown-flags-content {
     display: none;
     position: absolute;
     left: 0;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.5);
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     z-index: 1;
     border-radius: 5px;
@@ -168,11 +173,114 @@ header .auth a {
     color: #edb021;
     text-decoration: none;
     border: 1px solid #edb021;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 7px;
 }
 header .auth a:hover {
     color: #1c222a;
     background: #edb021;
     box-shadow: 0 0 10px #edb021;
+}
+@media (max-width: 850px){
+    header nav .menu-points {
+        display: none;
+    }
+    header nav .dropdown-menu {
+        display: inline-block;
+        margin: auto 20px;
+        color: #edb021;
+        font-size: 30px;
+    }
+    header nav .dropdown-menu-content {
+        left: 70px;
+        display: none;
+        position: absolute;
+        background: rgba(0, 0, 0, 0.8);
+        padding: 5px;
+        border-radius: 5px;
+        width: auto;
+        z-index: 1;
+    }
+    header nav .dropdown-menu:hover {
+        color: #dcdcdc;
+        text-shadow: 0 0 10px #dcdcdc;
+    }
+    header nav .dropdown-menu:hover .dropdown-menu-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+    header nav .dropdown-menu .dropdown-menu-points {
+        font-family: Roboto, sans-serif;
+        font-size: 20px;
+        text-decoration: none;
+        color: #dcdcdc;
+        margin: 10px 5px;
+    }
+    header nav .dropdown-menu .dropdown-menu-points:hover {
+        color: #edb021;
+    }
+    header .cart .flag {
+        width: 25px;
+        height: 15px;
+    }
+    header .cart .dropdown-flags-content {
+        left: -40px;
+    }
+    header .cart .dropdown-flags-content .flags{
+        width: 25px;
+    }
+    header .cart .dropdown-flags-content p {
+        font-size: 25px;
+    }
+}
+
+footer {
+    display: grid;
+    grid-template: 1fr 0.6fr / 1fr 1fr 1fr;
+    justify-content: space-around;
+    background: #1c222a;
+}
+footer .footer-column {
+    font-family: Roboto, sans-serif;
+    font-size: 15px;
+    display: inline-block;
+}
+footer .footer-column p {
+    color: #dcdcdc;
+    display: block;
+    margin: 20px auto;
+    width: 60%;
+}
+footer .footer-column a {
+    color: #6a655d;
+    text-decoration: none;
+    display: block;
+    width: 60%;
+    margin: auto;
+}
+footer .footer-column a:hover {
+    color: #dcdcdc;
+    text-shadow: 0 0 5px #edb021;
+}
+footer .footer-row {
+    grid-column: 1 / span 3;
+    font-family: Roboto, sans-serif;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+footer .footer-row .footer-info {
+    text-align: justify;
+    color: #dcdcdc;
+    font-size: 15px;
+    width: 50%;
+}
+footer .footer-row .footer-date {
+    text-align: center;
+    color: #6a655d;
+    font-size: 12px;
+    width: 70%;
+    margin: 0 0 12px 0;
 }
