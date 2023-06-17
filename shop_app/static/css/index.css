@@ -8,7 +8,7 @@ body {
 .mySlides {
     display: none
 }
-img {
+.mySlides img {
     vertical-align: middle;
     height: 350px;
 }
