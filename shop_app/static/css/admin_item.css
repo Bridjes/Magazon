@@ -1,0 +1,87 @@
+.items .item-panel {
+    display: flex;
+    justify-content: end;
+}
+.items .item-panel .item-add {
+    text-decoration: none;
+    height: 30px;
+    color: #1c222a;
+    background: #edb021;
+    padding: 0 10px;
+    border-bottom: 1px solid #dcdcdc;
+    border-right: 1px solid #dcdcdc;
+    display: flex;
+    align-items: center;
+    font-family: Roboto, sans-serif;
+}
+.items .item-panel .item-add:hover {
+    background: #825b00;
+    color: #1c222a;
+}
+.items .item-panel .search-item {
+    display: flex;
+    justify-content: flex-end;
+}
+.items .item-panel .search-item input {
+    color: #dcdcdc;
+    font-family: Roboto, sans-serif;
+    height: 30px;
+    text-indent: 7px;
+    border: none;
+    outline: none;
+    background: #825b00;
+}
+.items .item-panel .search-item input::placeholder{
+    color: #dcdcdc;
+    font-family: Roboto, sans-serif;
+}
+.items .item-panel .search-item button {
+    border: none;
+    background: #825b00;
+    border-bottom: 1px solid #dcdcdc;
+}
+.items .item-panel .search-item button i {
+    color: #dcdcdc;
+}
+.items .item-panel .search-item button i:hover {
+    text-shadow: 0 0 5px #edb021;
+}
+.items .table-items {
+    width: 100%;
+    border-collapse: collapse;
+}
+.items .table-items thead tr {
+    background: #825b00;
+    color: #dcdcdc;
+    font-family: Roboto, sans-serif;
+}
+.items .table-items tbody tr {
+    color: #dcdcdc;
+    background: rgba(0, 0, 0, 0.5);
+    font-family: Roboto, sans-serif;
+}
+.items .table-items tbody tr:hover {
+    background: #dcdcdc;
+    color: #1c222a;
+}
+.items .table-items thead th {
+    border-right: 1px solid #dcdcdc;
+    border-bottom: 1px solid #dcdcdc;
+}
+.items .table-items tbody td {
+    padding: 0 5px;
+    text-align: start;
+    border-right: 1px solid #dcdcdc;
+    border-bottom: 1px solid #dcdcdc;
+}
+.items .table-items thead th:last-child {
+    border-right: none;
+}
+.items .table-items tbody td:last-child{
+    border: none;
+    text-align: center;
+    border-bottom: 1px solid #dcdcdc;
+}
+.items .table-items tbody td .item-img {
+    max-height: 50px;
+}

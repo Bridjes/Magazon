@@ -1,0 +1,72 @@
+{% extends "menu.html" %}
+
+{% block title%}{{ item.name }}{% endblock %}
+{% block link%}
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/admin_item_view.css') }}">
+{% endblock %}
+
+{% block content %}
+    <section>
+        <form method="post" enctype="multipart/form-data">
+            <h3>Просмотр товара</h3>
+            <div class="form">
+                <label for="name">Наименование</label>
+                <input id="name" name="name" type="text" value="{{ item.name }}">
+                <label for="category">Категория</label>
+                <select id="category" name="category">
+                    {% for category in categories %}
+                        {% if category.category == item.category %}
+                            <option value="{{ category.category }}" selected>{{ category.category }}</option>
+                        {% else %}
+                            <option value="{{ category.category }}">{{ category.category }}</option>
+                        {% endif %}
+                    {% else %}
+                        <option value="Без категории">Без категории</option>
+                    {% endfor %}
+                </select>
+                <label for="description">Описание</label>
+                <textarea id="description" rows="10" name="description">{{ item.description }}</textarea>
+                <label for="image1">Изображение 1</label>
+                <div class="item-photo">
+                    {% if item.image1 %}
+                        <img src="data:image/png;base64,{{ item.image1|b64encode }}" alt="Нет изображения" class="item-img">
+                    {% else %}
+                    {% endif %}
+                </div>
+                <label for="image1">Новое изображение 1</label>
+                <input id="image1" name="image1" type="file" accept="image/jpeg,image/png">
+                <label for="image2">Изображение 2</label>
+                <div class="item-photo">
+                    {% if item.image2 %}
+                        <img src="data:image/png;base64,{{ item.image2|b64encode }}" alt="Нет изображения" class="item-img">
+                    {% else %}
+                    {% endif %}
+                </div>
+                <label for="image2">Новое изображение 2</label>
+                <input id="image2" name="image2" type="file" accept="image/jpeg,image/png">
+                <label for="image3">Изображение 3</label>
+                <div class="item-photo">
+                    {% if item.image3 %}
+                        <img src="data:image/png;base64,{{ item.image3|b64encode }}" alt="Нет изображения" class="item-img">
+                    {% else %}
+                    {% endif %}
+                </div>
+                <label for="image3">Новое изображение 3</label>
+                <input id="image3" name="image3" type="file" accept="image/jpeg,image/png">
+                <label for="image4">Изображение 4</label>
+                <div class="item-photo">
+                    {% if item.image4 %}
+                        <img src="data:image/png;base64,{{ item.image4|b64encode }}" alt="Нет изображения" class="item-img">
+                    {% else %}
+                    {% endif %}
+                </div>
+                <label for="image4">Новое изображение 4</label>
+                <input id="image4" name="image4" type="file" accept="image/jpeg,image/png">
+                <label for="price">Стоимость</label>
+                <input id="price" name="price" type="text" value="{{ item.price }}">
+                <button class="submit" type="submit">Сохранить</button>
+                <a class="delete" href="/admin/item/del/{{ item.id }}">Удалить</a>
+            </div>
+        </form>
+    </section>
+{% endblock %}

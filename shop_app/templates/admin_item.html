@@ -1,0 +1,51 @@
+{% extends "menu.html" %}
+
+{% block title%}Просмотр товаров{% endblock %}
+{% block link%}<link rel="stylesheet" href="{{ url_for('static', filename = 'css/admin_item.css') }}">{% endblock %}
+
+{% block content %}
+    <section class="items">
+        <div class="item-panel">
+            <a class="item-add" href="/admin/item/add">Добавить товар</a>
+            <form class="search-item" method="post">
+                <input type="search" placeholder="поиск..." name="search">
+                <button type="submit">
+                    <i class="fa fa-search"></i>
+                </button>
+            </form>
+        </div>
+        <table class="table-items">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Наименование</th>
+                    <th>Категория</th>
+                    <th>Описание</th>
+                    <th>Цена</th>
+                    <th>Изображение</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in items %}
+                    <tr onclick="window.location.href='/admin/item/view/{{ item.id }}'; return false">
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.category }}</td>
+                        <td>{{ item.description }}</td>
+                        <td>{{ item.price }}</td>
+                        <td>
+                            {% if item.image1 %}
+                                <img src="data:image/png;base64,{{ item.image1|b64encode }}" alt="Нет изображения" class="item-img">
+                            {% else %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="12">Список пуст...</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+{% endblock %}
