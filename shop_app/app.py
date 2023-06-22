@@ -17,4 +17,8 @@ db = SQLAlchemy(app)
 # объект миграции БД
 migrate = Migrate(app, db)
 # объект авторизации пользователей
-# login_manager = LoginManager(app)
+login_manager = LoginManager(app)
+
+login_manager.login_view = 'login'
+login_manager.login_message = "Авторизуйтесь для доступа к закрытым страницам"
+login_manager.login_message_category = "success"

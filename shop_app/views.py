@@ -1,14 +1,73 @@
 from flask import render_template, request, redirect, flash
-from .app import app, db
+from .app import app, db, login_manager
 from .models import Item, Categories, Users
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import LoginManager, login_user, login_required, logout_user, current_user
+from .user_login import UserLogin
 import base64
 
+# фабрика класса UserLogin для обработки авторизации
+@login_manager.user_loader
+def load_user(user_id):
+    return UserLogin().fromDB(user_id, db)
+
+# фильтр b64encode, который кодирует бинарные данные в base64-строку
+@app.template_filter('b64encode')
+def b64encode(data):
+    return base64.b64encode(data).decode('utf-8')
+
+########################
 # ПОЛЬЗОВАТЕЛЬСКИЕ ВЬЮХИ
 # стартовая страница
 @app.route('/')
 def index():
     return render_template('index.html')
+
+# авторизация пользователей
+@app.route('/login', methods=['POST', 'GET'])
+def login():
+    # если авторизация пройдена, перебросит в стартовую
+    if current_user.is_authenticated:
+        return redirect('/')
+
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+        user = Users.query.filter_by(email=email).first()
+
+        # если пользователь найден и хешт паролей совпали
+        if user and check_password_hash(user.password, password):
+            # создаём объект обработки учётных данных
+            userlogin = UserLogin().create(user)
+
+            # считываем выбор галки "Запомнить"
+            try:
+                # если галка не выбрана шарахнет исключение
+                val = request.form['remain']
+                rm = True
+            except:
+                rm = False
+
+            # стартуем сессию пользователя
+            login_user(userlogin, remember=rm)
+
+            # если пользак пытался пробиться на страницу (где нужна авторизация),
+            # то сразу после авторизации, пользака на ней и перекинет
+            return redirect(request.args.get("next") or '/')
+        else:
+            flash('Неправильный email или пароль')
+            return render_template('login.html')
+    else:
+        return render_template('login.html')
+
+# выход из учётки
+@app.route('/logout')
+@login_required
+def logout():
+    # закрываем сессию пользака
+    logout_user()
+    flash("Вы вышли из аккаунта", "success")
+    return redirect('/login')
 
 # форма регистрации пользователей
 @app.route('/registration', methods=['POST', 'GET'])
@@ -18,32 +77,37 @@ def registration():
         email = request.form['email']
 
         user = Users.query.filter_by(email=email).all()
-        if user:
-            flash('Пользователь с таким email уже зарегистрирован')
+        if not name or not email:
+            flash('Поля не могу быть пустыми')
         else:
-            password = request.form['password']
-            password_again = request.form['password_again']
-            if password != password_again:
-                flash('Пароли не совпадают')
+            if user:
+                flash('Пользователь с таким email уже зарегистрирован')
             else:
-                hash = generate_password_hash(password)
+                password = request.form['password']
+                password_again = request.form['password_again']
+                if password != password_again:
+                    flash('Пароли не совпадают')
+                else:
+                    hash = generate_password_hash(password)
 
-                user = Users(name=name,
-                             email=email,
-                             password=hash)
+                    user = Users(name=name,
+                                 email=email,
+                                 password=hash)
 
-                try:
-                    db.session.add(user)
-                    db.session.commit()
-                    return redirect('/')
-                except:
-                    flash('При регистрации произошла ошибка')
+                    try:
+                        db.session.add(user)
+                        db.session.commit()
+                        return redirect('/')
+                    except:
+                        flash('При регистрации произошла ошибка')
 
     return render_template('registration.html')
 
+#################
 # АДМИНСКИЕ ВЬЮХИ
 # просмотр списка товаров
 @app.route('/admin/item', methods=['POST', 'GET'])
+@login_required
 def admin_item():
     if request.method == 'POST':
         search_query = request.form['search']
@@ -52,11 +116,6 @@ def admin_item():
     else:
         items = Item.query.all()
         return render_template('admin_item.html', items=items)
-
-# фильтр b64encode, который кодирует бинарные данные в base64-строку
-@app.template_filter('b64encode')
-def b64encode(data):
-    return base64.b64encode(data).decode('utf-8')
 
 # добавление товара
 @app.route('/admin/item/add', methods=['POST', 'GET'])

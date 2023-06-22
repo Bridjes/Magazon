@@ -7,7 +7,7 @@
     padding: 40px;
     width: 400px;
     display: grid;
-    grid-template: 30px 30px 30px 30px 40px 30px / 2fr 4fr;
+    grid-template: 30px 30px 30px 80px 30px / 2fr 4fr;
     grid-gap: 20px;
     font-family: Roboto, sans-serif;
     color: #dcdcdc;
@@ -24,6 +24,13 @@
     border: none;
     outline: none;
     text-indent: 5px;
+}
+.register form .remain-box {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    grid-column: 1 / span 2;
 }
 .register form .submit {
     grid-column: 1 / span 2;
@@ -46,6 +53,15 @@
     box-shadow: 0 0 10px #edb021;
     background: #edb021;
     color: #1c222a;
+}
+.register form .submit a {
+    margin: 10px;
+    color: #edb021;
+    text-decoration: none;
+}
+.register form .submit a:hover {
+    color: #dcdcdc;
+    text-shadow: 0 0 10px #edb021;
 }
 .register form .flash {
     grid-column: 1 / span 2;
