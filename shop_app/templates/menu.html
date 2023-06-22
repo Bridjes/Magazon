@@ -60,9 +60,16 @@
                 </div>
             </div>
         </div>
-        <div class="auth">
-            <a href="/login">Войти</a>
-        </div>
+        {% if current_user.is_authenticated %}
+            <div class="user">
+                <a href="#">{{ current_user.get_name() }}</a>
+                <a href="/logout">Выйти</a>
+            </div>
+        {% else %}
+            <div class="login">
+                <a href="/login">Войти</a>
+            </div>
+        {% endif %}
     </header>
 
     {% block content %}

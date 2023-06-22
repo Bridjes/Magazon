@@ -19,6 +19,9 @@ migrate = Migrate(app, db)
 # объект авторизации пользователей
 login_manager = LoginManager(app)
 
+# переброс пользователей с закрытых страниц на форму авторизации
 login_manager.login_view = 'login'
+# flash-уведомление с перебросом выше
 login_manager.login_message = "Авторизуйтесь для доступа к закрытым страницам"
+# категория flash-уведомления (для различных стилей)
 login_manager.login_message_category = "success"

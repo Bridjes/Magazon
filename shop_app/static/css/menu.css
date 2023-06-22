@@ -163,12 +163,12 @@ header .cart .dropdown-flags-content .flags {
 header .cart .flag:hover {
     box-shadow: 0 0 10px 2px #dcdcdc;
 }
-header .auth {
+header .login {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-header .auth a {
+header .login a {
     font-family: Roboto, sans-serif;
     color: #edb021;
     text-decoration: none;
@@ -176,10 +176,28 @@ header .auth a {
     border-radius: 5px;
     padding: 7px;
 }
-header .auth a:hover {
+header .login a:hover {
     color: #1c222a;
     background: #edb021;
     box-shadow: 0 0 10px #edb021;
+}
+header .user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+header .user a {
+    font-family: Roboto, sans-serif;
+    color: #edb021;
+    text-decoration: none;
+    padding: 7px;
+}
+header .user a:last-child {
+    border-left: 1px solid #edb021;
+}
+header .user a:hover {
+    color: #dcdcdc;
+    text-shadow: 0 0 10px #edb021;
 }
 @media (max-width: 850px){
     header nav .menu-points {
