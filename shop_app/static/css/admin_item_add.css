@@ -59,6 +59,7 @@ section form button {
     border: none;
     border-radius: 5px;
     color: #dcdcdc;
+    padding: 5px 0;
 }
 section form button:hover {
     background: #6a655d;

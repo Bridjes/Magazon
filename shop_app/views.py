@@ -1,6 +1,7 @@
-from flask import render_template, request, redirect
+from flask import render_template, request, redirect, flash
 from .app import app, db
-from .models import Item, Categories
+from .models import Item, Categories, Users
+from werkzeug.security import generate_password_hash, check_password_hash
 import base64
 
 # ПОЛЬЗОВАТЕЛЬСКИЕ ВЬЮХИ
@@ -8,6 +9,37 @@ import base64
 @app.route('/')
 def index():
     return render_template('index.html')
+
+# форма регистрации пользователей
+@app.route('/registration', methods=['POST', 'GET'])
+def registration():
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+
+        user = Users.query.filter_by(email=email).all()
+        if user:
+            flash('Пользователь с таким email уже зарегистрирован')
+        else:
+            password = request.form['password']
+            password_again = request.form['password_again']
+            if password != password_again:
+                flash('Пароли не совпадают')
+            else:
+                hash = generate_password_hash(password)
+
+                user = Users(name=name,
+                             email=email,
+                             password=hash)
+
+                try:
+                    db.session.add(user)
+                    db.session.commit()
+                    return redirect('/')
+                except:
+                    flash('При регистрации произошла ошибка')
+
+    return render_template('registration.html')
 
 # АДМИНСКИЕ ВЬЮХИ
 # просмотр списка товаров
