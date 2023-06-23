@@ -1,0 +1,92 @@
+.units {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+.units .unit {
+    margin: 20px;
+}
+.units .unit .unit-link {
+    position: relative;
+}
+.units .unit .unit-link:hover::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.units .unit .unit-photo {
+    height: 300px;
+    width: 200px;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-top: 1px solid #825b00;
+    border-left: 1px solid #825b00;
+    border-right: 1px solid #825b00;
+    box-sizing: border-box;
+}
+.units .unit .unit-photo img {
+    max-height: 95%;
+    max-width: 95%;
+}
+.units .unit .unit-price {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 200px;
+    height: 30px;
+    border-left: 1px solid #825b00;
+    border-right: 1px solid #825b00;
+    box-sizing: border-box;
+    background: white;
+}
+.units .unit .unit-price b {
+    padding-left: 10px;
+    font-family: Roboto, sans-serif;
+    font-size: 20px;
+    color: #1c222a;
+    text-shadow: 1px 1px 2px #825b00;
+}
+.units .unit .unit-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 200px;
+    height: 75px;
+    background: #825b00;
+}
+.units .unit .unit-info .unit-name {
+    margin: 10px 5px;
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    color: #dcdcdc;
+    height: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.units .unit .unit-add {
+    width: 100%;
+    height: 20px;
+    border: none;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    font-family: Roboto, sans-serif;
+    background: #1c222a;
+    color: #edb021;
+}
+.units .unit .unit-add:hover {
+    background: #6a655d;
+    color: #edb021;
+    text-shadow: 0 0 5px black;
+}

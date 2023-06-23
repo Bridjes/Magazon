@@ -1,0 +1,25 @@
+{% extends "menu.html" %}
+
+{% block title%}Товары{% endblock %}
+{% block link%}<link rel="stylesheet" href="{{ url_for('static', filename = 'css/item.css') }}">{% endblock %}
+
+{% block content %}
+    <section class="units">
+        {% for item in items %}
+            <div class="unit">
+                <div class="unit-link" onclick="window.location.href='/item/view/{{ item.id }}'; return false">
+                    <div class="unit-photo">
+                    <img src="data:image/png;base64,{{ item.image1|b64encode }}" alt="Нет изображения" class="item-img">
+                    </div>
+                    <div class="unit-price">
+                        <b>{{ item.price }} руб</b>
+                    </div>
+                    <div class="unit-info">
+                        <p class="unit-name">{{ item.name }}</p>
+                    </div>
+                </div>
+                <button class="unit-add">В корзину</button>
+            </div>
+        {% endfor %}
+    </section>
+{% endblock %}

@@ -103,6 +103,26 @@ def registration():
 
     return render_template('registration.html')
 
+# просмотр списка товаров
+@app.route('/item', methods=['POST', 'GET'])
+def item():
+    if request.method == 'POST':
+        search_query = request.form['search']
+        items = Item.query.filter(Item.name.contains(search_query)).all()
+        return render_template('item.html', items=items)
+    else:
+        items = Item.query.all()
+        return render_template('item.html', items=items)
+
+# просмотр и редактирование товара
+@app.route('/item/view/<int:id>', methods=['POST', 'GET'])
+def item_view(id):
+    item = Item.query.get_or_404(id)
+    if request.method == 'POST':
+        pass
+    else:
+        return render_template('admin_item_view.html', item=item)
+
 #################
 # АДМИНСКИЕ ВЬЮХИ
 # просмотр списка товаров
@@ -119,6 +139,7 @@ def admin_item():
 
 # добавление товара
 @app.route('/admin/item/add', methods=['POST', 'GET'])
+@login_required
 def admin_item_add():
     if request.method == 'POST':
         name = request.form['name']
@@ -151,6 +172,7 @@ def admin_item_add():
 
 # просмотр и редактирование товара
 @app.route('/admin/item/view/<int:id>', methods=['POST', 'GET'])
+@login_required
 def admin_item_view(id):
     item = Item.query.get_or_404(id)
     if request.method == 'POST':
@@ -173,6 +195,7 @@ def admin_item_view(id):
 
 # удаление товара
 @app.route('/admin/item/del/<int:id>')
+@login_required
 def admin_item_delete(id):
     item = Item.query.get_or_404(id)
     try:
