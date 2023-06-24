@@ -1,0 +1,10 @@
+{% extends "menu.html" %}
+
+{% block title%}Нужны права администратора{% endblock %}
+{% block link%}<link rel="stylesheet" href="{{ url_for('static', filename = 'css/admin_nead_roots_rights.css') }}">{% endblock %}
+
+{% block content %}
+    <section class="root-rights">
+        <h3>У вашей учётной записи нет прав администратора</h3>
+    </section>
+{% endblock %}

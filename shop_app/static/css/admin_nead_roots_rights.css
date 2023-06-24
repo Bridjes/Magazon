@@ -1,0 +1,10 @@
+.root-rights {
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.root-rights h3 {
+    font-family: Roboto, sans-serif;
+    color: #1c222a;
+}

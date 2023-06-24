@@ -26,6 +26,7 @@ class Users(db.Model):
     name = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(100), nullable=False)
     password = db.Column(db.String(150), nullable=False)
+    admin = db.Column(db.Boolean, server_default='false')
 
     def __repr__(self):
         return f'{self.name} {self.email}'

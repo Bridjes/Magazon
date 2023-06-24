@@ -1,0 +1,12 @@
+{% extends "menu.html" %}
+
+{% block title%}{{ item.name }}{% endblock %}
+{% block link%}<link rel="stylesheet" href="{{ url_for('static', filename = 'css/item.css') }}">{% endblock %}
+
+{% block content %}
+    <section>
+        <h4 class="item-name">{{ item.name }}</h4>
+        <h5 class="item-price">{{ item.price }}</h5>
+        <p class="item-description">{{ item.description }}</p>
+    </section>
+{% endblock %}

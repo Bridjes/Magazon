@@ -1,3 +1,4 @@
+from functools import wraps
 from flask import render_template, request, redirect, flash
 from .app import app, db, login_manager
 from .models import Item, Categories, Users
@@ -15,6 +16,18 @@ def load_user(user_id):
 @app.template_filter('b64encode')
 def b64encode(data):
     return base64.b64encode(data).decode('utf-8')
+
+# декоратор для проверки на админа
+def admin_required(func):
+    @wraps(func)
+    @login_required
+    def decorated_view(*args, **kwargs):
+        print(type(current_user.is_admin()), current_user.is_admin())
+        if current_user.is_admin():
+            return func(*args, **kwargs)
+        else:
+            return render_template('admin_nead_roots_rights.html')
+    return decorated_view
 
 ########################
 # ПОЛЬЗОВАТЕЛЬСКИЕ ВЬЮХИ
@@ -114,20 +127,17 @@ def item():
         items = Item.query.all()
         return render_template('item.html', items=items)
 
-# просмотр и редактирование товара
+# просмотр товара
 @app.route('/item/view/<int:id>', methods=['POST', 'GET'])
 def item_view(id):
     item = Item.query.get_or_404(id)
-    if request.method == 'POST':
-        pass
-    else:
-        return render_template('admin_item_view.html', item=item)
+    return render_template('item_view.html', item=item)
 
 #################
 # АДМИНСКИЕ ВЬЮХИ
 # просмотр списка товаров
 @app.route('/admin/item', methods=['POST', 'GET'])
-@login_required
+@admin_required
 def admin_item():
     if request.method == 'POST':
         search_query = request.form['search']
@@ -139,7 +149,7 @@ def admin_item():
 
 # добавление товара
 @app.route('/admin/item/add', methods=['POST', 'GET'])
-@login_required
+@admin_required
 def admin_item_add():
     if request.method == 'POST':
         name = request.form['name']
@@ -172,7 +182,7 @@ def admin_item_add():
 
 # просмотр и редактирование товара
 @app.route('/admin/item/view/<int:id>', methods=['POST', 'GET'])
-@login_required
+@admin_required
 def admin_item_view(id):
     item = Item.query.get_or_404(id)
     if request.method == 'POST':
@@ -195,7 +205,7 @@ def admin_item_view(id):
 
 # удаление товара
 @app.route('/admin/item/del/<int:id>')
-@login_required
+@admin_required
 def admin_item_delete(id):
     item = Item.query.get_or_404(id)
     try:

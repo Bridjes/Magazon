@@ -15,3 +15,6 @@ class UserLogin(UserMixin):
 
     def get_name(self):
         return self.__user.name
+
+    def is_admin(self):
+        return self.__user.admin
