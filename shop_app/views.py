@@ -22,7 +22,6 @@ def admin_required(func):
     @wraps(func)
     @login_required
     def decorated_view(*args, **kwargs):
-        print(type(current_user.is_admin()), current_user.is_admin())
         if current_user.is_admin():
             return func(*args, **kwargs)
         else:

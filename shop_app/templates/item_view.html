@@ -1,12 +1,47 @@
 {% extends "menu.html" %}
 
 {% block title%}{{ item.name }}{% endblock %}
-{% block link%}<link rel="stylesheet" href="{{ url_for('static', filename = 'css/item.css') }}">{% endblock %}
+{% block link%}<link rel="stylesheet" href="{{ url_for('static', filename = 'css/item_view.css') }}">{% endblock %}
 
 {% block content %}
-    <section>
+    <section class="item-view">
         <h4 class="item-name">{{ item.name }}</h4>
-        <h5 class="item-price">{{ item.price }}</h5>
+        <div class="item-img">
+            <img class="item-image" src="data:image/png;base64,{{ item.image1|b64encode }}" alt="Нет изображения">
+        </div>
         <p class="item-description">{{ item.description }}</p>
+        <h5 class="item-price">{{ item.price }} руб</h5>
+        <div class="item-add">
+            <button>В корзину</button>
+        </div>
+        <div class="item-galery">
+            {% if item.image1 %}
+                <div class="photo">
+                    <img src="data:image/png;base64,{{ item.image1|b64encode }}" alt="">
+                </div>
+            {% else %}
+            {% endif %}
+
+            {% if item.image2 %}
+                <div class="photo">
+                    <img src="data:image/png;base64,{{ item.image2|b64encode }}" alt="">
+                </div>
+            {% else %}
+            {% endif %}
+
+            {% if item.image3 %}
+                <div class="photo">
+                    <img src="data:image/png;base64,{{ item.image3|b64encode }}" alt="">
+                </div>
+            {% else %}
+            {% endif %}
+
+            {% if item.image4 %}
+                <div class="photo">
+                    <img src="data:image/png;base64,{{ item.image4|b64encode }}" alt="">
+                </div>
+            {% else %}
+            {% endif %}
+        </div>
     </section>
 {% endblock %}
