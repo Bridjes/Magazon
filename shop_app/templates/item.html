@@ -22,4 +22,28 @@
             </div>
         {% endfor %}
     </section>
+    <div class="pagination">
+        <!-- Ссылка на предыдущую страницу -->
+        {% if items.prev_num %}
+            <div><a href="/item/{{ items.prev_num }}"><i class="fa fa-arrow-left"></i></a></div>
+        {% endif %}
+
+        <!-- Список ссылок предыдущих 5 страниц -->
+        {% for i in range(items.page - 5, items.page) if i > 0 %}
+            <div><a href="/item/{{ i }}">{{ i }}</a></div>
+        {% endfor %}
+
+        <!-- Номер текущей страницы -->
+        <div>{{ items.page }}</div>
+
+        <!-- Список ссылок следующих 5 страниц -->
+        {% for i in range(items.page + 1, items.page + 5) if i <= items.pages %}
+            <div><a href="/item/{{ i }}">{{ i }}</a></div>
+        {% endfor %}
+
+        <!-- Ссылка на следующую страницу -->
+        {% if items.next_num %}
+            <div><a href="/item/{{ items.next_num }}"><i class="fa fa-arrow-right"></i></a></div>
+        {% endif %}
+    </div>
 {% endblock %}

@@ -90,3 +90,25 @@
     color: #edb021;
     text-shadow: 0 0 5px black;
 }
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pagination div {
+    margin: 5px;
+    font-family: Roboto, sans-serif;
+    border-radius: 5px;
+    background: #1c222a;
+    min-width: 20px;
+    text-align: center;
+    color: #edb021;
+}
+.pagination div a {
+    color: #dcdcdc;
+    text-decoration: none;
+}
+.pagination div a:hover {
+    color: #edb021;
+    text-shadow: 0 0 5px #edb021;
+}
