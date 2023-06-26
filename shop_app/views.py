@@ -117,13 +117,22 @@ def registration():
 
 # просмотр списка товаров
 @app.route('/item', methods=['POST', 'GET'])
-def item():
+@app.route('/item/<int:page>', methods=['POST', 'GET'])
+def item(page=1):
     if request.method == 'POST':
         search_query = request.form['search']
-        items = Item.query.filter(Item.name.contains(search_query)).all()
+        # вывод через пагинацию по 4 элемента, начиная с первой выборки элементов
+        items = Item.query.filter(Item.name.contains(search_query)).paginate(page=page, per_page=4, error_out=False)
         return render_template('item.html', items=items)
     else:
-        items = Item.query.all()
+        # вывод через пагинацию по 4 элемента, начиная с первой выборки элементов
+        items = Item.query.paginate(page=page, per_page=4, error_out=False)
+        # вывод общего количества страниц
+        # print(items.pages)
+        # вывод номера предыдущей страницы (либо None)
+        # print(items.prev_num)
+        # вывод номера следующей страницы (либо None)
+        # print(items.next_num)
         return render_template('item.html', items=items)
 
 # просмотр товара
