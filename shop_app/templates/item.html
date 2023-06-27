@@ -18,7 +18,9 @@
                         <p class="unit-name">{{ item.name }}</p>
                     </div>
                 </div>
-                <button class="unit-add">В корзину</button>
+                <div class="item-button">
+                    <a href="/buy/{{ item.id }}" class="unit-add">Купить</a>
+                </div>
             </div>
         {% endfor %}
     </section>

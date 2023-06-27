@@ -1,11 +1,12 @@
 from functools import wraps
 from flask import render_template, request, redirect, flash
-from .app import app, db, login_manager
+from .app import app, db, login_manager, API_KEY, DOMAIN
 from .models import Item, Categories, Users
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from .user_login import UserLogin
 import base64
+import stripe
 
 # фабрика класса UserLogin для обработки авторизации
 @login_manager.user_loader
@@ -27,6 +28,9 @@ def admin_required(func):
         else:
             return render_template('admin_nead_roots_rights.html')
     return decorated_view
+
+# присвоили API-ключ платёжной системы
+stripe.api_key = API_KEY
 
 ########################
 # ПОЛЬЗОВАТЕЛЬСКИЕ ВЬЮХИ
@@ -144,6 +148,39 @@ def item(page=1):
 def item_view(id):
     item = Item.query.get_or_404(id)
     return render_template('item_view.html', item=item)
+
+# переход к оплате товара
+@app.route('/buy/<int:id>', methods=['POST', 'GET'])
+def create_checkout_session(id):
+    item = Item.query.get_or_404(id)
+    try:
+        checkout_session = stripe.checkout.Session.create(
+            line_items=[
+                {
+                    'price_data': {
+                        'currency': 'byn',
+                        'unit_amount': int(item.price * 100),
+                        'product_data': {
+                            'name': f'{item.name}',
+                            'description': f'{item.description}',
+                            # 'images': ['https://example.com/t-shirt.png'],
+                        },
+                    },
+                    'quantity': 1,
+                },
+            ],
+            mode='payment',
+            success_url=f'{DOMAIN}/success',
+            cancel_url=f'{DOMAIN}/item/view/{item.id}',
+        )
+    except Exception as e:
+        return str(e)
+
+    return redirect(checkout_session.url, code=303)
+
+@app.route('/success', methods=['POST', 'GET'])
+def success_payment():
+    return render_template('success_payment.html')
 
 #################
 # АДМИНСКИЕ ВЬЮХИ

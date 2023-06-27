@@ -12,7 +12,7 @@
         <p class="item-description">{{ item.description }}</p>
         <h5 class="item-price">{{ item.price }} руб</h5>
         <div class="item-add">
-            <button>В корзину</button>
+            <a href="/buy/{{ item.id }}">Купить</a>
         </div>
         <div class="item-galery">
             {% if item.image1 %}

@@ -25,3 +25,10 @@ login_manager.login_view = 'login'
 login_manager.login_message = "Авторизуйтесь для доступа к закрытым страницам"
 # категория flash-уведомления (для различных стилей)
 login_manager.login_message_category = "success"
+
+
+# API платёжной системы Stripe
+API_KEY = 'sk_test_51NNdPmBKCHVmBqHBpkD2x16TNg01c8pT8MFx85erqYht7OrULckmq0D9rT79ZkwE298KSBHFeKjUj1ndGzKjPvbV00URJJft40'
+
+# Домен сайта
+DOMAIN = 'http://127.0.0.1:5000'

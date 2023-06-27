@@ -75,6 +75,10 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.units .unit .item-button {
+    width: 200px;
+    display: flex;
+}
 .units .unit .unit-add {
     width: 100%;
     height: 20px;
@@ -82,8 +86,11 @@
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     font-family: Roboto, sans-serif;
+    text-decoration: none;
     background: #1c222a;
     color: #edb021;
+    display: flex;
+    justify-content: center;
 }
 .units .unit .unit-add:hover {
     background: #6a655d;
